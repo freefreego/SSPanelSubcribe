@@ -157,6 +157,18 @@ class AppURI
                 }
                 $return = ($item['remark'] . ' = custom, ' . $item['address'] . ', ' . $item['port'] . ', ' . $item['method'] . ', ' . $item['passwd'] . ', https://raw.githubusercontent.com/lhie1/Rules/master/SSEncrypt.module' . URL::getSurgeObfs($item));
                 break;
+				case 'vmess':
+                if (!in_array($item['net'], ['ws', 'tcp'])) {
+                    break;
+                }
+                $tls = ($item['tls'] == 'tls'
+                    ? ', tls=true'
+                    : '');
+                $ws = ($item['net'] == 'ws'
+                    ? ', ws=true, ws-path=' . $item['path'] . ', ws-headers=host:' . $item['host']
+                    : '');
+                $return = $item['remark'] . ' = vmess, ' . $item['add'] . ', ' . $item['port'] . ', username = ' . $item['id'] . $ws . $tls;
+                break;
         }
         return $return;
     }

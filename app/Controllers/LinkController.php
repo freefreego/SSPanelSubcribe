@@ -873,6 +873,7 @@ class LinkController extends BaseController
         $userapiUrl = $subInfo['surfboard'];
         $All_Proxy = '';
         $Rule['type'] = 'ss';
+		$Rule['type'] = 'v2ray';
         $items = URL::getNew_AllItems($user, $Rule);
         foreach ($items as $item) {
             $out = AppURI::getSurfboardURI($item);
