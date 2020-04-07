@@ -1,0 +1,14 @@
+0.0.0.0:80
+root /var/www/SSPanelSubcribe/public/
+
+fastcgi / 127.0.0.1:9000 php {
+    ext   .php
+    split .php
+    index index.php
+}
+gzip
+rewrite {
+    to {path} {path}/ /index.php?{query}
+}
+
+on startup php-fpm --nodaemonize
